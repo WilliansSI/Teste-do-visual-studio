@@ -1,0 +1,24 @@
+private MySqlConnection bdConn; //MySQL
+private MySqlDataAdapter bdAdapter;
+private DataSet bdDataSet; //MySQL
+Na ação do botão:
+
+//Definição do dataset
+bdDataSet = new DataSet();
+ //Define string de conexão
+bdConn = new MySqlConnection("Persist Security  Info=False;server=localhost;database=rfidapp;uid=root;server=localhost;database=rfidapp;uid=root;pwd=''");
+
+//Abre conecção
+ try{
+ 	bdConn.Open();
+}
+catch{
+ MessageBox.Show("Impossível estabelecer conexão");
+}
+//Verifica se a conexão está aberta
+if (bdConn.State == ConnectionState.Open)
+{
+	//Se estiver aberta insere os dados na BD
+MySqlCommand commS = new MySqlCommand("INSERT INTO regists VALUES('',\\'" + txtNome + "\\',\\'" + txtMail + "\\')", bdConn);
+commS.BeginExecuteNonQuery();
+}
